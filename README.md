@@ -2,12 +2,33 @@
 
 part of my homelab on an intel nuc running debian
 
+
+## Motivation
+
+k3s is lightweight enough, for home usage.
+i have more than a few containers running, and compose takes time to setup as well. 
+
+## Batteries included
+
 this will install k3s with ansible on debian.
+
+included components:
+
+- k3s
+- metallb
+- traefik
+- prometheus
+- grafana
+- elasticsearch
+
 I am using a public domain for the traefik lb and i am getting
 letsencrypt wildcard certificates with dns-01 challenge.
 Domain is hosted on ovh.
 
 this is tied to my setup, but should be generic enough to use it right away. some changes in the helm values files may be required for the traefik config if you want to use self signed certs, though.
+
+
+
 
 ## requirements:
 
