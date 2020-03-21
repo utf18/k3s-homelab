@@ -1,0 +1,10 @@
+resources:
+- grafana-templated.yml
+namespace: monitoring
+images:
+- name: grafana/grafana
+  newName: grafana/grafana
+- name: busybox
+  newName: busybox
+- name: kiwigrid/k8s-sidecar
+  newName: kiwigrid/k8s-sidecar

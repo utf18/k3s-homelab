@@ -1,0 +1,14 @@
+- name: create namespaces
+  shell: "{{ template_dir }}/create-namespaces.sh"
+
+- name: deploy elastic operator, the script will wait until the operator is ready
+  shell: "{{ template_dir }}/deploy-elastic-operator.sh"
+
+- name: deploy EFK
+  shell: "{{ template_dir }}/deploy-elastic.sh"
+
+- name: template helm charts with kustomize
+  shell: "{{ template_dir }}/create-helm-templates.sh"
+
+- name: deploy templated charts
+  shell: "{{ template_dir }}/deploy-charts.sh"

@@ -1,0 +1,17 @@
+- name: copy charts to k3s server
+  synchronize:  
+    src: charts
+    dest: "{{ template_dir }}/"
+
+- name: copy elastic files to k3s server
+  synchronize:
+    src: eck
+    dest: "{{ template_dir }}/"
+
+- name: copy scripts to k3s server
+  synchronize:
+    src: scripts/
+    dest: "{{ template_dir }}/"
+
+- name: make the scripts executable
+  shell: "chmod -R +x {{ template_dir }}"

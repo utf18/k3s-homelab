@@ -1,0 +1,3 @@
+- import_tasks: upload-files.yml
+- import_tasks: template-values.yml
+- import_tasks: deploy.yml

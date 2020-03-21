@@ -1,0 +1,11 @@
+all:
+  vars:
+    host_key_checking: False
+    ansible_user: username # Remote user
+    ansible_port: 22
+  hosts:
+  children:
+    masters:
+      hosts:
+        master1:
+          ansible_host: host.example.com #192.168.1.2 # Remote host

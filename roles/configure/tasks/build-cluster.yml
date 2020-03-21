@@ -1,0 +1,19 @@
+# init cluster
+- name: create k3s cluster
+  shell: curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --no-deploy traefik --no-deploy servicelb" sh -s -
+
+# create kubectl config folder for user {{ k3s_user }}
+- name: create .kube directory for user {{ k3s_user }}
+  file:
+    path: "/home/{{ k3s_user }}/.kube"
+    state: directory
+    mode: 0755
+    owner: "{{ k3s_user }}"
+
+# make kubectl work without setting kubeconfig via env
+- name: copy k3s.yaml to user home folder
+  copy:
+    src: /etc/rancher/k3s/k3s.yaml
+    dest: "/home/{{ k3s_user }}/.kube/config"
+    owner: "{{ k3s_user }}"
+    remote_src: yes

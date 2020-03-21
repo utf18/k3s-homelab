@@ -1,0 +1,40 @@
+k3s_user: k3s
+ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+# do not change this template_dir, it is hardcoded in the scripts
+template_dir: /tmp/cluster-install
+helm_version: v3.1.2
+storage_class_name: local-path
+storage_class_access_mode: ReadWriteOnce
+
+# your domain
+domain: example.com
+
+# the metallb range for the LB, will not work with most vps servers
+metallb:
+    adress_range: 192.168.1.245-192.168.1.250
+
+# grafana admin password, user is 'admin'
+grafana:
+    password: password1234
+
+traefik:
+    # traefik basic auth user for dashboard
+    user: testuser
+    # > htpasswd -n -b testuser testpass
+    # > testuser:$apr1$JXRA7j2s$LpVns9vsme8FHN0r.aSt11
+    password: $apr1$JXRA7j2s$LpVns9vsme8FHN0r.aSt11
+    # you should look into the traefik values file if you want to use letsencrypt
+    # i am using ovh with dns-01 challenge, hence the setup
+    challengeType: dns-01
+    # set to false if you want to use production authority
+    staging: true
+    email: johndoe@example.com
+    dnsProvider: ovh
+    OVH_ENDPOINT: "ovh-eu"
+    OVH_APPLICATION_KEY: ""
+    OVH_APPLICATION_SECRET: ""
+    OVH_CONSUMER_KEY: ""
+
+# prometheus server pvc size
+prometheus:
+    size: 50Gi

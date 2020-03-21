@@ -1,0 +1,16 @@
+- name: Disable swap
+  shell: swapoff -a
+
+- name: Disable swap permanently (modify /etc/fstab)
+  replace:
+    path: /etc/fstab
+    regexp: '^(.*swap.*)$'
+    backup: yes
+    replace: '#\1'
+
+- name: set net.ipv4.ip_forward to 1
+  retries: 2
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: '1'
+    state: present

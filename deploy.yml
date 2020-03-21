@@ -1,0 +1,6 @@
+---
+- name: deploy all the things
+  hosts: masters
+  become: yes
+  roles:
+    - deploy

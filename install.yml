@@ -1,0 +1,20 @@
+---
+- name: Bootstrap Tasks
+  hosts: 
+    - masters
+  become: yes
+  gather_facts: False
+  roles:
+    - setup
+
+- name: configure k3s
+  hosts: masters
+  become: yes
+  roles:
+    - configure
+
+- name: deploy all the things
+  hosts: masters
+  become: yes
+  roles:
+    - deploy

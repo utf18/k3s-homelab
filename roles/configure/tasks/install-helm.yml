@@ -1,0 +1,34 @@
+- name: check if helm exists, and if not download it
+  stat:
+    path: /usr/local/bin/helm
+  register: stat_result
+
+- name: download helm zip
+  get_url:
+    url: https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz
+    dest: "{{ template_dir }}/helm.tar.gz"
+    mode: 0440
+  when: stat_result.stat.exists == False 
+
+- name: Wait until the file {{ template_dir }}/helm.tar.gz is present
+  wait_for:
+    path: "{{ template_dir }}/helm.tar.gz"
+    timeout: 20
+    delay: 2
+    msg: "Timeout to find file {{ template_dir }}/helm.tar.gz"
+  when: stat_result.stat.exists == False 
+
+- name: unarchive helm archive
+  unarchive:
+    src: "{{ template_dir }}/helm.tar.gz"
+    dest: "{{ template_dir }}/"
+    remote_src: yes
+  when: stat_result.stat.exists == False 
+
+- name: Move helm binary to /usr/local/bin
+  command: "mv {{ template_dir }}/linux-amd64/helm /usr/local/bin/helm"
+  when: stat_result.stat.exists == False 
+
+- name: make helm binary executable
+  file: "dest=/usr/local/bin/ mode=+x"
+  when: stat_result.stat.exists == False 

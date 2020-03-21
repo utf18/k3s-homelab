@@ -1,0 +1,8 @@
+resources:
+- metallb-templated.yml
+namespace: metallb
+images:
+- name: metallb/controller
+  newName: metallb/controller
+- name: metallb/speaker
+  newName: metallb/speaker

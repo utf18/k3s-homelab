@@ -1,0 +1,53 @@
+- name: template and copy grafana values
+  template:
+    src: grafana/values.j2
+    dest: "{{ template_dir }}/charts/grafana/values.yaml"
+    mode: 0775
+
+- name: template and copy grafana kustomization file
+  template:
+    src: grafana/kustomization.j2
+    dest: "{{ template_dir }}/charts/grafana/kustomization.yml"
+    mode: 0775
+
+- name: template and copy prometheus values
+  template:
+    src: prometheus/values.j2
+    dest: /tmp/cluster-install/charts/prometheus/values.yaml
+    mode: 0775
+
+- name: template and copy prometheus kustomization file
+  template:
+    src: prometheus/kustomization.j2
+    dest: "{{ template_dir }}/charts/prometheus/kustomization.yml"
+    mode: 0775
+
+- name: template and copy metallb values
+  template:
+    src: metallb/values.j2
+    dest: "{{ template_dir }}/charts/metallb/values.yaml"
+    mode: 0775
+
+- name: template and copy metallb kustomization file
+  template:
+    src: metallb/kustomization.j2
+    dest: "{{ template_dir }}/charts/metallb/kustomization.yml"
+    mode: 0775
+
+- name: template and copy traefik values
+  template:
+    src: traefik/values.j2
+    dest: "{{ template_dir }}/charts/traefik/values.yaml"
+    mode: 0775
+
+- name: template and copy traefik kustomization file
+  template:
+    src: traefik/kustomization.j2
+    dest: "{{ template_dir }}/charts/traefik/kustomization.yml"
+    mode: 0775
+
+- name: template and copy kibana ingress file
+  template:
+    src: kibana/ingress.j2
+    dest: "{{ template_dir }}/eck/kibana-ingress.yml"
+    mode: 0775

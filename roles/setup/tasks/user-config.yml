@@ -1,0 +1,26 @@
+- name: create the 'k3s' user
+  user: 
+    name: k3s 
+    append: yes 
+    state: present 
+    createhome: yes 
+    shell: /bin/bash
+
+- name: allow user to have passwordless sudo
+  lineinfile:
+    dest: /etc/sudoers
+    line: 'k3s ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+
+- name: set up authorized keys for the k3s user
+  authorized_key: 
+    user: k3s 
+    key: "{{item}}"
+  with_file:
+    - ~/.ssh/id_rsa.pub
+
+- name: adding existing user k3s to group docker
+  user:
+    name: k3s
+    groups: docker
+    append: yes
