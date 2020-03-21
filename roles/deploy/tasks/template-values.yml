@@ -51,3 +51,15 @@
     src: kibana/ingress.j2
     dest: "{{ template_dir }}/eck/kibana-ingress.yml"
     mode: 0775
+
+- name: template and copy nfs values
+  template:
+    src: nfs-client-provisioner/values.j2
+    dest: "{{ template_dir }}/charts/nfs-client-provisioner/values.yaml"
+    mode: 0775
+
+- name: template and copy nfs kustomization file
+  template:
+    src: nfs-client-provisioner/kustomization.j2
+    dest: "{{ template_dir }}/charts/nfs-client-provisioner/kustomization.yml"
+    mode: 0775

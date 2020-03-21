@@ -38,3 +38,9 @@ traefik:
 # prometheus server pvc size
 prometheus:
     size: 50Gi
+
+# nfs mount has to exist 
+nfs:
+    server: your-nfs-server
+    path: /path/to/your/mount
+    storage_class: nfs

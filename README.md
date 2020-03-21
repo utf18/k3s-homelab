@@ -20,6 +20,7 @@ included components:
 - prometheus
 - grafana
 - elasticsearch
+- nfs-client-provisioner (nfs server must exist, otherwise remove the chart)
 
 I am using a public domain for the traefik lb and i am getting
 letsencrypt wildcard certificates with dns-01 challenge.
