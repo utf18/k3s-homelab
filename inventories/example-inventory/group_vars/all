@@ -3,8 +3,14 @@ ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
 # do not change this template_dir, it is hardcoded in the scripts
 template_dir: /tmp/cluster-install
 helm_version: v3.1.2
-storage_class_name: local-path
-storage_class_access_mode: ReadWriteOnce
+
+storageclasses:
+    default:
+        name: local-path
+        access_mode: ReadWriteOnce
+    nfs:
+        name: nfs
+        access_mode: ReadWriteMany
 
 # your domain
 domain: example.com
