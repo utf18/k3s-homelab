@@ -277,8 +277,8 @@ acme:
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
     ##
-    storageClass: "{{ storage_class_name }}"
-    accessMode: {{ storage_class_access_mode }}
+    storageClass: "{{ storageclasses.default.name }}"
+    accessMode: {{ storageclasses.default.access_mode }}
     size: 1Gi
     ## A manually managed Persistent Volume Claim
     ## Requires persistence.enabled: true

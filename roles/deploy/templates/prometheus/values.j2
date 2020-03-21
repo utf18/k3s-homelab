@@ -172,7 +172,7 @@ alertmanager:
     ## Ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
     ##
     accessModes:
-      - {{ storage_class_access_mode }}
+      - {{ storageclasses.default.access_mode }}
 
     ## alertmanager data Persistent Volume Claim annotations
     ##
@@ -198,7 +198,7 @@ alertmanager:
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
     ##
-    storageClass: "{{ storage_class_name }}"
+    storageClass: "{{ storageclasses.default.name }}"
 
     ## alertmanager data Persistent Volume Binding Mode
     ## If defined, volumeBindingMode: <volumeBindingMode>
@@ -767,7 +767,7 @@ server:
     ## Ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
     ##
     accessModes:
-      - ReadWriteOnce
+      - {{ storageclasses.default.access_mode }}
 
     ## Prometheus server data Persistent Volume annotations
     ##
@@ -793,7 +793,7 @@ server:
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
     ##
-    storageClass: "{{ storage_class_name }}"
+    storageClass: "{{ storageclasses.default.name }}"
 
     ## Prometheus server data Persistent Volume Binding Mode
     ## If defined, volumeBindingMode: <volumeBindingMode>
@@ -1081,7 +1081,7 @@ pushgateway:
     ## Ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
     ##
     accessModes:
-      - {{ storage_class_access_mode }}
+      - {{ storageclasses.default.access_mode }}
 
     ## pushgateway data Persistent Volume Claim annotations
     ##
@@ -1107,7 +1107,7 @@ pushgateway:
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
     ##
-    storageClass: "{{ storage_class_name }}"
+    storageClass: "{{ storageclasses.default.name }}"
 
     ## pushgateway data Persistent Volume Binding Mode
     ## If defined, volumeBindingMode: <volumeBindingMode>

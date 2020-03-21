@@ -193,9 +193,9 @@ extraContainers: |
 persistence:
   type: pvc
   enabled: true
-  storageClassName: {{ storage_class_name }}
+  storageClassName: {{ storageclasses.default.name }}
   accessModes:
-    - {{ storage_class_access_mode }}
+    - {{ storageclasses.default.access_mode }}
   size: 10Gi
   # annotations: {}
   finalizers:
